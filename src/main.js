@@ -44,7 +44,7 @@ const handleAddRole = async (input) => {
 
   const index = parseInt(department.split("-")[0].trim(), 10);
   let query = `INSERT INTO role (title, salary, department_id) VALUES ('${title}', ${salary}, ${index})`;
-  queryEngine(query);
+  queryEngine(query); 
 };
 
 // ---------- Department ----------------

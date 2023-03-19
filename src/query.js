@@ -14,6 +14,5 @@ const queryEngine = async (str) => {
   console.log("\n");
   console.table(data);
   return data;
-};
-
+};  
 module.exports = queryEngine;
