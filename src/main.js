@@ -8,7 +8,8 @@ const queryEngine = require("./query");
 // ---------- role ----------------
 
 const viewAllRoles = async () => {
-  queryEngine("SELECT * FROM role");
+  const data = queryEngine("SELECT * FROM role");
+  return data; 
 };
 
 const addRole = async () => {
@@ -78,6 +79,52 @@ const viewAllEmployees = async () => {
   queryEngine("SELECT * FROM employee");
 };
 
+const addEmployee = async () => {
+const role = await viewAllRoles();
+const roleArr = role.map((job) => job = `${job.id} - ${job.title}`)
+const query = 'SELECT * FROM employee WHERE role_id IN (1, 3, 6, 8)'
+const mgmt = await queryEngine(query)
+const mgmtArr = mgmt.map((name) => name = `${name.id} - ${name.first_name}${name.last_name}`)
+
+
+await inquirer 
+  .prompt([
+    {
+      type: 'Input',
+      message: 'What Is The Employees First Name?',
+      name: 'first'
+    },
+    {
+      type: 'Input',
+      message: 'What Is The Employees last Name?',
+      name: 'last'
+    },
+    {
+      type: 'list',
+      message: 'What Is The Employees Role?',
+      name: 'role',
+      choices: roleArr
+    },
+    {
+      type: 'list',
+      message: 'Who Is Their Manager?',
+      name: 'manager',
+      choices: [...mgmtArr, 'NULL'] 
+    }
+  ]).then((name) => handleAddEmployee(name))
+}
+
+const handleAddEmployee = async (name) => {
+  const {first, last, role, manager} = name; 
+  const roleIndex = parseInt(role.split("_")[0].trim(), 10);
+  const managerIndex = parseInt(manager.split("-")[0].trim(), 10)
+  
+  const query = `INSERT INTO employee (first_name, last_name, role_id ${managerIndex ? `, manager_id` : ''}) 
+                 VALUES ("${first}", "${last}", ${roleIndex}${managerIndex ? `, ${managerIndex}` : ''})`
+  queryEngine(query)
+}
+
+
 // ---------- Initial Prompts ----------------
 
 const initialPrompt = async () => {
@@ -89,7 +136,7 @@ const initialPrompt = async () => {
         viewAllEmployees();
         break;
       case "Add Employees":
-        console.log("I chose add employees");
+        addEmployee()
         break;
       case "Update Employee Role":
         console.log("I chose Update Employee Role");
