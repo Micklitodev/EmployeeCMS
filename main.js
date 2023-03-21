@@ -19,25 +19,25 @@ const initialPrompt = async () => {
     const answer = answers.initialPrompt;
     switch (answer) {
       case "View All Employees":
-        EmpObj.view()
+        EmpObj.view().then(() => initialPrompt());
         break;
       case "Add Employees":
-        EmpObj.add()
+        EmpObj.add().then(() => initialPrompt());
         break;
       case "Update Employee Role":
-        EmpObj.update()
+        EmpObj.update().then(() => initialPrompt());
         break;
       case "View All Roles":
-        RoleObj.view()
+        RoleObj.view().then(() => initialPrompt());
         break;
       case "Add Role":
-        RoleObj.add()
+        RoleObj.add().then(() => initialPrompt());
         break;
       case "View All Departments":
-        DeptObj.view()
+        DeptObj.view().then(() => initialPrompt());
         break;
       case "Add Department":
-        DeptObj.add()
+        DeptObj.add().then(() => initialPrompt());
 
         break;
     }
