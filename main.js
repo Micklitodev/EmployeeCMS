@@ -19,7 +19,7 @@ const initialPrompt = async () => {
     const answer = answers.initialPrompt;
     switch (answer) {
       case "View All Employees":
-        EmpObj.view().then(() => initialPrompt());
+        EmpObj.view().then((data)=> console.table(data)).then(() => initialPrompt());
         break;
       case "Add Employees":
         EmpObj.add().then(() => initialPrompt());
@@ -28,13 +28,13 @@ const initialPrompt = async () => {
         EmpObj.update().then(() => initialPrompt());
         break;
       case "View All Roles":
-        RoleObj.view().then(() => initialPrompt());
+        RoleObj.view().then((data)=> console.table(data)).then(() => initialPrompt());
         break;
       case "Add Role":
         RoleObj.add().then(() => initialPrompt());
         break;
       case "View All Departments":
-        DeptObj.view().then(() => initialPrompt());
+        DeptObj.view().then((data)=> console.table(data)).then(() => initialPrompt());
         break;
       case "Add Department":
         DeptObj.add().then(() => initialPrompt());
