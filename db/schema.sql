@@ -1,3 +1,5 @@
+---------- Inital Structure of DB ----------------
+
 DROP DATABASE IF EXISTS employee_cms;
 
 CREATE DATABASE employee_cms;

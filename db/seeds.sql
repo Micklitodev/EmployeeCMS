@@ -1,3 +1,5 @@
+---------- Inital Data to be added to DB that follows Schema.sql  Structure ----------------
+
 INSERT INTO department (id, name)
 VALUES (1, "Sales"),
        (2, "Engineering"),

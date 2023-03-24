@@ -7,11 +7,18 @@ const Department = require('./lib/department')
 const Role = require('./lib/role')
 const Employee = require('./lib/employee')
 
+// ---------- App ----------------
+
+// ---------- Instance of the Class Objects (see /lib for more details) ----------------
+
 const RoleObj = new Role();
 const DeptObj = new Department();
 const EmpObj = new Employee()
 
-// ---------- App ----------------
+
+
+
+// ---------- Inital Prompt ----------------
 
 const initialPrompt = async () => {
   await inquirer.prompt(initialPromptQuestions).then((answers) => {
@@ -43,6 +50,9 @@ const initialPrompt = async () => {
     }
   });
 };
+
+// ---------- Prompt Choices ----------------
+
 const initialPromptQuestions = [
   {
     type: "list",
@@ -60,6 +70,7 @@ const initialPromptQuestions = [
   },
 ];
 
+// ---------- Connection Figlet Message/ Header ----------------
 
 db.connect((err) => {
   if (err) {
